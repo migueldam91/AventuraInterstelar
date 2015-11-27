@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+    <!-- Base application theme. -->
+        <style name="ButtonStyle">
+            <item name="android:background">#FFFFFF</item>
+            <item name="android:textColor">#FF3A8AEC</item>
+            <item name="android:textSize">14sp</item>
+            <item name="android:textAllCaps">true</item>
+            <item name="android:gravity">center</item>
+        </style>
+
+        <style name="textEditStyle">
+            <item name="android:background">#FFFFFF</item>
+
+            <item name="android:hint">Enter your name to begin</item>
+            <item name="android:textSize">14sp</item>
+            <item name="android:textColorHint">#FF3A8AEC</item>
+            <item name="android:height">32dp</item>
+
+
+        </style>
+
+</resources>

@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.miguel.viajeinterstelar.StoryActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@drawable/page0"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:adjustViewBounds="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Adventure"
+        android:id="@+id/tvAdventure"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:lineSpacingExtra="1.2dp"
+        android:paddingTop="15dp"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignStart="@+id/imageView2" />
+
+    <Button
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stopInvestigate_Button"
+        android:id="@+id/btnInvestigate"
+        android:layout_below="@+id/tvAdventure"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/continue_Button"
+        android:id="@+id/btnContinue"
+        android:layout_below="@+id/btnInvestigate"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
