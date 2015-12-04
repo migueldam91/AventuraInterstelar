@@ -45,5 +45,8 @@ public class Page {
     public Page(int imageId, String text) {
         this.imageId = imageId;
         this.text = text;
+        this.choice1=null;
+        this.choice2=null;
+        this.isFinal=true;
     }
 }

@@ -20,43 +20,20 @@ public class StoryActivity extends ActionBarActivity {
     private TextView textView;
     private ImageView imageView;
     private Story story = new Story();
-    private Button btnContinue, btnInvestigate;
+    private Button btnArriba, btnAbajo;
     private Drawable imagen;
-    private Choice choice;
     private Page pagina;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_story);
-
-
+        btnArriba = (Button) findViewById(R.id.btnInvestigate);
+        btnAbajo = (Button) findViewById(R.id.btnContinue);
         nombreAventurero= getIntent().getStringExtra("Name");
         textView= (TextView) findViewById(R.id.tvAdventure);
         imageView=(ImageView)findViewById(R.id.imageView2);
 
-
-        btnContinue = (Button) findViewById(R.id.btnContinue);
-        btnContinue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                choice=pagina.getChoice1();
-
-                cargarPagina(choice.getNextId());
-
-            }
-        });
-
-        btnInvestigate = (Button) findViewById(R.id.btnInvestigate);
-        btnInvestigate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                choice=pagina.getChoice2();
-
-                cargarPagina(choice.getNextId());
-            }
-        });
-        pagina=cargarPagina(0);
-
+        cargarPagina(0);
     }
 
     @Override
@@ -81,21 +58,43 @@ public class StoryActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public Page cargarPagina(int paginaArray){
-        Page paginaActual= story.getPage(paginaArray);
+    public void cargarPagina(int paginaArray){
+        pagina= story.getPage(paginaArray);
 
-        imagen=getResources().getDrawable(paginaActual.getImageId());
+        imagen=getResources().getDrawable(pagina.getImageId());
         imageView.setImageDrawable(imagen);
+        textView.setText(String.format(pagina.getText(), nombreAventurero));
 
-        if(paginaArray== 0 || paginaArray==4 || paginaArray==5)
-            textView.setText(String.format(paginaActual.getText(), nombreAventurero));
-        else
-            textView.setText(paginaActual.getText());
 
-        btnInvestigate.setText(paginaActual.getChoice1().getText());
-        btnContinue.setText(paginaActual.getChoice2().getText());
-        Log.v("Opcion Elegida A", paginaActual.getChoice1().getText());
-        return paginaActual;
+
+        if(pagina.isFinal()) {
+            btnArriba.setVisibility(View.INVISIBLE);
+            btnAbajo.setText("Play again");
+            btnAbajo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }else {
+            btnArriba.setText(pagina.getChoice1().getText());
+            btnAbajo.setText(pagina.getChoice2().getText());
+
+            btnArriba.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cargarPagina(pagina.getChoice1().getNextId());
+                }
+            });
+
+            btnAbajo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cargarPagina(pagina.getChoice2().getNextId());
+                }
+            });
+        }
+
 
 
     }
